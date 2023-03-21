@@ -1,32 +1,34 @@
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(mp4|mov|wmv|mkv|webm)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button', onClick: () => videoplay(entry.n) }))
+		h('button',{ className: 'play-button fa-play', onClick: () => videoplay(entry.n) }))
 
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(mp3|wav|aac|ogg|flac|opus)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button', onClick: () => audioplay(entry.n) }))
+		h('button',{ className: 'play-button fa-play', onClick: () => audioplay(entry.n) }))
 
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(jpg|jpeg|png|webp|avif)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button', onClick: () => viewimage(entry.n) }))
+		h('button',{ className: 'play-button fa-play', onClick: () => viewimage(entry.n) }))
 
 HFS.onEvent('beforeHeader', () => `
+	<div id='audio-player' class='media-player'>
+		<div id='audio-div'>
+			<audio controls controlslist='nodownload'>
+			</audio>
+		</div>
+		<div>
+			<span id='media-title' class='media-title'></span>
+			<button id="audio-player-close" class='media-close fa-cancel' onclick="audioplay()"></button>
+		</div>
+	</div>
 	<div id='video-player' class='media-player'>
 		<div id="video-div">
 			<video controls loop controlslist='nodownload' autopictureinpicture=true>
 			</video>
 		</div>
 		<div>
-			<button id="video-player-close" class='media-close' onclick="videoplay()">x</button>
 			<span id='media-title' class='media-title'></span>
-		</div>
-	</div>
-	<div id='audio-player' class='media-player'>
-		<audio controls controlslist='nodownload'>
-		</audio>
-		<div>
-			<span id='media-title' class='media-title'></span>
-			<button id="audio-player-close" class='media-close' onclick="audioplay()">x</button>
+			<button id="video-player-close" class='media-close fa-cancel' onclick="videoplay()"></button>
 		</div>
 	</div>
 	<div id='image-viewer' class='media-player'>
@@ -35,8 +37,8 @@ HFS.onEvent('beforeHeader', () => `
 			</img>
 		</div>
 		<div>
-			<button id="image-viewer-close" class='media-close' onclick="viewimage()">x</button>
 			<span id='media-title' class='media-title'></span>
+			<button id="image-viewer-close" class='media-close fa-cancel' onclick="viewimage()"></button>
 		</div>
 	</div>
 `)
