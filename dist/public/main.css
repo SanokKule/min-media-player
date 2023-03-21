@@ -29,6 +29,7 @@
 		max-width: 100vw;
 		background: #0f11117d;
 		inset: 0px;
+		z-index: 2;
 	}
 }
 
