@@ -1,32 +1,21 @@
-/* shared stuff */
 .play-button {
-	font-size: 0.7em;
-	padding: 0.2em 0.4em;
-	margin-left: 0.4em;
-	vertical-align: bottom;
-}
-.play-button::before {
-	content: '▶';
+	font-size: .7em;
+	padding: .3em;
+	margin-left: .4em;
+	vertical-align: text-bottom;
 }
 .media-close {
-	font-size: 8pt;
+	font-size: .7em;
 }
 #media-title {
 	color: var(--button-text);
-	padding: .5em 1em;
-	text-decoration: none;
-	border-radius: .3em;
+	padding: .5em 0em .5em .5em;
 	vertical-align: middle;
 	text-shadow: 1px 1px 4px rgb(0 0 0 / 70%);
-	font-size: 12pt;
-	overflow: hidden;
-}
-#media-player button {
-	margin-right: .5em;
 }
 .media-player {
 	display: none;
-	gap: 0.2em;
+	gap: .2em;
 	align-items: center;
 	justify-content: center;
 	bottom: 2em;
@@ -39,35 +28,48 @@
 		max-height: 100vh;
 		max-width: 100vw;
 		background: #0f11117d;
-		z-index: 2;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
+		inset: 0px;
 	}
 }
-/* per player stuff */
+
 #audio-player {
-	padding-bottom: 0;
 	flex-direction: row;
 	top: unset;
-	bottom: 2.2em;
+	bottom: 3em;
+	left: auto;
+	right: auto;
+	width: 49.6em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+	border-radius: 0.3em;
+	box-shadow: 0 0 0em 0em #000;
+	background: #0f11117d;
 }
-div#image-div {
+#video-div {
 	max-width: 95vw;
 	max-height: 90vh;
 }
-img {
+video {
 	max-height: 90vh;
 	object-fit: contain;
 	inline-size: -webkit-fill-available;
 	inline-size: -moz-available;
 }
-div#video-div {
+@media (min-width: 1200px) {
+	#audio-player {
+		box-shadow: 0 0 0.3em 0.3em #0003;
+	}
+}
+audio {
+	padding-left: 2px;
+	height: 45px;
+	translate: 0px 2px;
+}
+#image-div {
 	max-width: 95vw;
 	max-height: 90vh;
 }
-video {
+img {
 	max-height: 90vh;
 	object-fit: contain;
 	inline-size: -webkit-fill-available;
