@@ -7,7 +7,7 @@ HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 		h('button',{ className: 'play-button fa-play', onClick: () => audioplay(entry.n) }))
 
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-	/\.(jpg|jpeg|png|webp|avif)$/i.test(entry.n) &&
+	/\.(gif|jpg|jpeg|png|apng|webp|avif)$/i.test(entry.n) &&
 		h('button',{ className: 'play-button fa-play', onClick: () => viewimage(entry.n) }))
 
 HFS.onEvent('beforeHeader', () => `
