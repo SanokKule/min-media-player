@@ -1,4 +1,4 @@
-exports.version = 0.86
+exports.version = 0.87
 exports.description = "minimalistic media player"
 exports.apiRequired = 5
 exports.repo = "SanokKule/min-media-player"
