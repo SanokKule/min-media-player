@@ -1,72 +1,66 @@
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(mp4|mov|wmv|mkv|webm)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button fa-play', onClick: () => videoplay(entry.n) }))
+		h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_video(entry.n) }))
 
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(mp3|wav|aac|ogg|flac|opus)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button fa-play', onClick: () => audioplay(entry.n) }))
+		h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_audio(entry.n) }))
 
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(gif|jpg|jpeg|png|apng|webp|avif)$/i.test(entry.n) &&
-		h('button',{ className: 'play-button fa-play', onClick: () => viewimage(entry.n) }))
+		h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_image(entry.n) }))
 
 HFS.onEvent('beforeHeader', () => `
-	<div id='audio-player' class='media-player'>
-		<div id='audio-div'>
-			<audio controls controlslist='nodownload'>
-			</audio>
-		</div>
+	<div id='mmp-audio' class='mmp'>
+		<audio id="mmp-audio-element" controls controlslist='nodownload'>
+		</audio>
 		<div>
-			<span id='media-title' class='media-title'></span>
-			<button id="audio-player-close" class='media-close fa-cancel' onclick="audioplay()"></button>
+			<span class='mmp-title'></span>
+			<button id="audio-player-close" class='mmp-close fa-cancel' onclick="mmp_audio()"></button>
 		</div>
 	</div>
-	<div id='video-player' class='media-player'>
-		<div id="video-div">
-			<video controls loop controlslist='nodownload' autopictureinpicture=true>
-			</video>
-		</div>
+	<div id='mmp-video' class='mmp'>
+		<video id="mmp-video-element" controls loop controlslist='nodownload' autopictureinpicture=true>
+		</video>
 		<div>
-			<span id='media-title' class='media-title'></span>
-			<button id="video-player-close" class='media-close fa-cancel' onclick="videoplay()"></button>
+			<span class='mmp-title'></span>
+			<button id="video-player-close" class='mmp-close fa-cancel' onclick="mmp_video()"></button>
 		</div>
 	</div>
-	<div id='image-viewer' class='media-player'>
-		<div id="image-div">
-			<img>
-			</img>
-		</div>
+	<div id='mmp-image' class='mmp'>
+		<img id="mmp-image-element">
+		</img>
 		<div>
-			<span id='media-title' class='media-title'></span>
-			<button id="image-viewer-close" class='media-close fa-cancel' onclick="viewimage()"></button>
+			<span class='mmp-title'></span>
+			<button id="image-viewer-close" class='mmp-close fa-cancel' onclick="mmp_image()"></button>
 		</div>
 	</div>
 `)
 
-function videoplay(name = '') {
-	const root = document.getElementById('video-player')
+function mmp_video(name = '') {
+	const root = document.getElementById('mmp-video')
 	root.style.display = name ? 'flex' : ''
 	const video = root.querySelector('video')
 	video.src = name
 	if (name) video.play()
 	else video.pause()
-	root.querySelector('#media-title').innerText = name
+	root.querySelector('.mmp-title').innerText = name
 }
 
-function audioplay(name = '') {
-	const root = document.getElementById('audio-player')
+function mmp_audio(name = '') {
+	const root = document.getElementById('mmp-audio')
 	root.style.display = name ? 'flex' : ''
 	const audio = root.querySelector('audio')
 	audio.src = name
 	if (name) audio.play()
 	else audio.pause()
-	root.querySelector('#media-title').innerText = name
+	root.querySelector('.mmp-title').innerText = name
 }
 
-function viewimage(name = '') {
-	const root = document.getElementById('image-viewer')
+function mmp_image(name = '') {
+	const root = document.getElementById('mmp-image')
 	root.style.display = name ? 'flex' : ''
 	const img = root.querySelector('img')
 	img.src = name
-	root.querySelector('#media-title').innerText = name
+	root.querySelector('.mmp-title').innerText = name
 }
