@@ -12,27 +12,27 @@ HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 
 HFS.onEvent('beforeHeader', () => `
 	<div id='mmp-audio' class='mmp'>
-		<audio id="mmp-audio-element" controls controlslist='nodownload'>
+		<audio id='mmp-audio-element' controls controlslist='nodownload'>
 		</audio>
 		<div>
 			<span class='mmp-title'></span>
-			<button id="audio-player-close" class='mmp-close fa-cancel' onclick="mmp_audio()"></button>
+			<button id='audio-player-close' class='mmp-close fa-cancel' onclick='mmp_audio()'></button>
 		</div>
 	</div>
 	<div id='mmp-video' class='mmp'>
-		<video id="mmp-video-element" controls loop controlslist='nodownload' autopictureinpicture=true>
+		<video id='mmp-video-element' controls loop controlslist='nodownload' autopictureinpicture=true>
 		</video>
 		<div>
 			<span class='mmp-title'></span>
-			<button id="video-player-close" class='mmp-close fa-cancel' onclick="mmp_video()"></button>
+			<button id='video-player-close' class='mmp-close fa-cancel' onclick='mmp_video()'></button>
 		</div>
 	</div>
 	<div id='mmp-image' class='mmp'>
-		<img id="mmp-image-element">
+		<img id='mmp-image-element'>
 		</img>
 		<div>
 			<span class='mmp-title'></span>
-			<button id="image-viewer-close" class='mmp-close fa-cancel' onclick="mmp_image()"></button>
+			<button id='image-viewer-close' class='mmp-close fa-cancel' onclick='mmp_image()'></button>
 		</div>
 	</div>
 `)
