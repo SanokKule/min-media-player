@@ -44,6 +44,9 @@ function mmp_video(name = '') {
 	video.src = name
 	if (name) video.play()
 	else video.pause()
+	const root_a = document.getElementById('mmp-audio')
+	const audio = root_a.querySelector('audio')
+	audio.pause()
 	root.querySelector('.mmp-title').innerText = name
 }
 
