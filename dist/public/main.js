@@ -10,9 +10,9 @@ HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(gif|jpg|jpeg|png|apng|webp|avif)$/i.test(entry.n) &&
 		h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_image(entry.n) }))
 
-HFS.onEvent('beforeHeader', () => `
+HFS.onEvent('afterHeader', () => `
 	<div id='mmp-audio' class='mmp'>
-		<audio id='mmp-audio-element' controls controlslist='nodownload'>
+		<audio class='mmp-media' controls controlslist='nodownload'>
 		</audio>
 		<div>
 			<span class='mmp-title'></span>
@@ -20,7 +20,7 @@ HFS.onEvent('beforeHeader', () => `
 		</div>
 	</div>
 	<div id='mmp-video' class='mmp'>
-		<video id='mmp-video-element' controls loop controlslist='nodownload' autopictureinpicture=true>
+		<video class='mmp-media' controls loop controlslist='nodownload' autopictureinpicture=true>
 		</video>
 		<div>
 			<span class='mmp-title'></span>
@@ -28,7 +28,7 @@ HFS.onEvent('beforeHeader', () => `
 		</div>
 	</div>
 	<div id='mmp-image' class='mmp'>
-		<img id='mmp-image-element'>
+		<img class='mmp-media'>
 		</img>
 		<div>
 			<span class='mmp-title'></span>
