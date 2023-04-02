@@ -44,6 +44,7 @@ function mmp_video(name = '') {
 	video.src = name
 	if (name) {
 		video.play()
+		video.volume = 0.5
 		const root = document.getElementById('mmp-audio')
 		const audio = root.querySelector('audio')
 		if (audio.paused == false) { audio.pause() }
@@ -57,7 +58,10 @@ function mmp_audio(name = '') {
 	root.style.display = name ? 'flex' : ''
 	const audio = root.querySelector('audio')
 	audio.src = name
-	if (name) audio.play()
+	if (name) {
+		audio.play()
+		audio.volume = 0.5
+	}
 	else audio.pause()
 	root.querySelector('.mmp-title').innerText = name
 }
