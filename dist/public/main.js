@@ -20,7 +20,7 @@ HFS.onEvent('afterHeader', () => `
 		</div>
 	</div>
 	<div id='mmp-video' class='mmp'>
-		<video class='mmp-media' controls loop controlslist='nodownload' autopictureinpicture=true>
+		<video class='mmp-media' controls loop controlslist='nodownload'>
 		</video>
 		<div>
 			<span class='mmp-title'></span>
@@ -42,11 +42,13 @@ function mmp_video(name = '') {
 	root.style.display = name ? 'flex' : ''
 	const video = root.querySelector('video')
 	video.src = name
-	if (name) video.play()
+	if (name) {
+		video.play()
+		const root = document.getElementById('mmp-audio')
+		const audio = root.querySelector('audio')
+		if (audio.paused == false) { audio.pause() }
+	}
 	else video.pause()
-	const root_a = document.getElementById('mmp-audio')
-	const audio = root_a.querySelector('audio')
-	audio.pause()
 	root.querySelector('.mmp-title').innerText = name
 }
 
