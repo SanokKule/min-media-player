@@ -1,3 +1,6 @@
+let temp_video_options = HFS.plugins['min-media-player'].start_video_with
+let video_options = temp_video_options.toString().replace(' ', '').replace(',', ' ')
+
 HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 	/\.(mp4|mov|wmv|mkv|webm)$/i.test(entry.uri) &&
 		h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_video(entry) }))
@@ -20,7 +23,7 @@ HFS.onEvent('afterHeader', () => `
 		</div>
 	</div>
 	<div id='mmp-video' class='mmp'>
-		<video class='mmp-media' controls loop controlslist='nodownload'>
+		<video class='mmp-media' ${video_options} controls controlslist='nodownload'>
 		</video>
 		<div>
 			<span class='mmp-title'></span>
@@ -37,6 +40,13 @@ HFS.onEvent('afterHeader', () => `
 	</div>
 `)
 
+document.addEventListener('keydown', function(event) {
+	if (event.key === 'Escape') {
+	  mmp_video();
+	  mmp_image();
+	}
+})
+
 function mmp_video(entry) {
 	const root = document.getElementById('mmp-video')
 	root.style.display = entry ? 'flex' : ''
@@ -45,7 +55,7 @@ function mmp_video(entry) {
 		return video.pause()
 	video.src = entry.uri
 	video.play()
-	video.volume = 0.5
+	video.volume = HFS.plugins['min-media-player'].video_vol
 	const root_a = document.getElementById('mmp-audio')
 	const audio = root_a.querySelector('audio')
 	if (audio.paused == false) { audio.pause() }
@@ -60,7 +70,7 @@ function mmp_audio(entry) {
 		return audio.pause()
 	audio.src = entry.uri
 	audio.play()
-	audio.volume = 0.5
+	audio.volume = HFS.plugins['min-media-player'].audio_vol
 	const root_v = document.getElementById('mmp-video')
 	const video = root_v.querySelector('video')
 	if (video.paused == false) { video.pause() }
