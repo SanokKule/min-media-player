@@ -7,6 +7,13 @@
 .mmp-close {
 	font-size: .7em;
 }
+@media (max-width: 1200px) {
+	.mmp-close {
+		margin-right: .4em;
+		margin-bottom: .4em;
+	}
+	
+}
 .mmp-title {
 	color: var(--button-text);
 	padding: .5em 0em .5em .5em;
@@ -14,23 +21,19 @@
 	text-shadow: 1px 1px 4px rgb(0 0 0 / 70%);
 }
 .mmp {
+	position: fixed;
 	display: none;
+	max-height: 100vh;
+	max-width: 100vw;
+	background: #0f11117d;
 	gap: .2em;
+	inset: 0px;
+	z-index: 2;
 	align-items: center;
 	justify-content: center;
-	bottom: 2em;
 	padding: 0;
 	flex-direction: column;
-}
-@media (min-width: 1200px) {
-	.mmp {
-		position: fixed;
-		max-height: 100vh;
-		max-width: 100vw;
-		background: #0f11117d;
-		inset: 0px;
-		z-index: 2;
-	}
+	text-align: center;
 }
 .mmp-media {
 	object-fit: contain;
@@ -50,16 +53,22 @@
 	max-width: 49.6em;
 	margin-left: .2em;
 	margin-right: .2em;
-	margin-bottom: .3em;
 	border-radius: .3em;
 	background: #0f11117d;
+	box-shadow: 0 0 0.3em .3em #0003;
 }
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
 	#mmp-audio {
-		box-shadow: 0 0 0.3em .3em #0003;
+		bottom: 2.45em;
+		flex-direction: column;
 	}
 }
 audio.mmp-media {
 	padding-left: 2px;
 	inline-size: revert;
+}
+@media (max-width: 1200px) {
+	audio.mmp-media {
+		width: 100%;
+	}
 }
