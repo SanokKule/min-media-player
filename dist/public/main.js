@@ -1,9 +1,16 @@
 const video_options = HFS.plugins['min-media-player'].start_video_with.toString().replace(',', ' ');
 
 if (HFS.plugins['min-media-player'].enable_audio) {
-	HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-		/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
-			h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) }));
+	if (HFS.plugins['min-media-player'].use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }) =>
+			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
+				{label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) });
+	}
+	else {
+		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
+				h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) }));
+	};
 	HFS.onEvent('afterHeader', () => `
 		<div
 			id='mmp-audio'
@@ -31,9 +38,16 @@ if (HFS.plugins['min-media-player'].enable_audio) {
 };
 
 if (HFS.plugins['min-media-player'].enable_video) {
-	HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-		/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
-			h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_video(entry) }));
+	if (HFS.plugins['min-media-player'].use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }) =>
+			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
+				{label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) });
+	}
+	else {
+		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
+				h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_video(entry) }));
+	};
 	HFS.onEvent('afterHeader', () => `
 		<div
 			id='mmp-video'
@@ -61,9 +75,16 @@ if (HFS.plugins['min-media-player'].enable_video) {
 };
 
 if (HFS.plugins['min-media-player'].enable_image) {
-	HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-		/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
-			h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_image(entry) }));
+	if (HFS.plugins['min-media-player'].use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }, { h }) =>
+			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
+				{label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) });
+	}
+	else {
+		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
+				h('button',{ className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) }));
+	};
 	HFS.onEvent('afterHeader', () => `
 		<div
 			id='mmp-image'
