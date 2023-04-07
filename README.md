@@ -1,4 +1,4 @@
-# min-media-player 0.96
+# min-media-player 0.97
 [HFS](https://github.com/rejetto/hfs) plugin adding a minimalistic media player
 
 Most of the code borrowed from [rejetto/simple-player](https://github.com/rejetto/simple-player)
