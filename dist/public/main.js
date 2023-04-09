@@ -1,15 +1,18 @@
-const video_options = HFS.plugins['min-media-player'].start_video_with.toString().replace(',', ' ');
+const cfg = HFS.getPluginConfig();
+const video_options = cfg.start_video_with.toString().replace(',', ' ');
 
-if (HFS.plugins['min-media-player'].enable_audio) {
-	if (HFS.plugins['min-media-player'].use_file_menu) {
+if (cfg.enable_audio) {
+	if (cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
 			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
-				{label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) });
+				{ label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) }
+		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
-				h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) }));
+				h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) })
+		);
 	};
 	HFS.onEvent('afterHeader', () => `
 		<div
@@ -25,7 +28,8 @@ if (HFS.plugins['min-media-player'].enable_audio) {
 			<div>
 				<span
 					class='mmp-title'
-				></span>
+				>
+				</span>
 				<button
 					id='audio-player-close'
 					class='mmp-close fa-cancel'
@@ -37,16 +41,18 @@ if (HFS.plugins['min-media-player'].enable_audio) {
 	`);
 };
 
-if (HFS.plugins['min-media-player'].enable_video) {
-	if (HFS.plugins['min-media-player'].use_file_menu) {
+if (cfg.enable_video) {
+	if (cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
 			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
-				{label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) });
+				{ label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) }
+		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
-				h('button',{ className: 'mmp-play fa-play', onClick: () => mmp_video(entry) }));
+				h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_video(entry) })
+		);
 	};
 	HFS.onEvent('afterHeader', () => `
 		<div
@@ -62,7 +68,9 @@ if (HFS.plugins['min-media-player'].enable_video) {
 			</video>
 			<div>
 				<span
-					class='mmp-title'></span>
+					class='mmp-title'
+				>
+				</span>
 				<button
 					id='video-player-close'
 					class='mmp-close fa-cancel'
@@ -74,16 +82,18 @@ if (HFS.plugins['min-media-player'].enable_video) {
 	`);
 };
 
-if (HFS.plugins['min-media-player'].enable_image) {
-	if (HFS.plugins['min-media-player'].use_file_menu) {
+if (cfg.enable_image) {
+	if (cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }, { h }) =>
 			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
-				{label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) });
+				{ label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
+		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
 			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
-				h('button',{ className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) }));
+				h( 'button', { className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) })
+		);
 	};
 	HFS.onEvent('afterHeader', () => `
 		<div
@@ -110,11 +120,8 @@ if (HFS.plugins['min-media-player'].enable_image) {
 	`);
 };
 
-document.addEventListener('keydown', function(event) {
-	if (event.key === 'Escape') {
-	  mmp_video();
-	  mmp_image();
-	};
+document.addEventListener('keydown', (event) => {
+	if (event.key === 'Escape') { mmp_video(); mmp_image(); };
 });
 
 function mmp_audio(entry) {
@@ -129,7 +136,7 @@ function mmp_audio(entry) {
 	};
 	audio.src = entry.uri;
 	audio.play();
-	audio.volume = HFS.plugins['min-media-player'].audio_vol;
+	audio.volume = cfg.audio_vol;
 	root.querySelector('.mmp-title').innerText = entry.name;
 	if (document.getElementById('mmp-video')) {
 		const root_v = document.getElementById('mmp-video');
@@ -150,16 +157,14 @@ function mmp_video(entry) {
 	};
 	video.src = entry.uri;
 	video.play();
-	video.volume = HFS.plugins['min-media-player'].video_vol;
+	video.volume = cfg.video_vol;
 	root.querySelector('.mmp-title').innerText = entry.name;
 	if (document.getElementById('mmp-audio')) {
 		const root_a = document.getElementById('mmp-audio');
 		const audio = root_a.querySelector('audio');
 		audio.pause();
 	};
-	if (document.getElementById('mmp-image')) {
-		mmp_image();
-	};
+	if (document.getElementById('mmp-image')) { mmp_image(); };
 };
 
 function mmp_image(entry) {
@@ -173,7 +178,5 @@ function mmp_image(entry) {
 	};
 	img.src = entry.uri;
 	root.querySelector('.mmp-title').innerText = entry.name;
-	if (document.getElementById('mmp-video')) {
-		mmp_video();
-	};
+	if (document.getElementById('mmp-video')) { mmp_video(); };
 };
