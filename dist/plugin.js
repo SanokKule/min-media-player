@@ -1,5 +1,5 @@
 exports.description = "minimalistic media player"
-exports.version = 0.99
+exports.version = 1.00
 exports.apiRequired = 8
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = 'style.css'
@@ -12,4 +12,7 @@ exports.config = {
 	enable_audio: { frontend: true, label: 'Enable audio player', type: 'boolean', defaultValue: true},
 	audio_vol: { frontend: true, label: 'Audio volume', helperText: '0.00 to 1.00', type: 'number', min: 0.00, max: 1.00, defaultValue: 0.75 },
 	enable_image: { frontend: true, label: 'Enable image viewer', type: 'boolean', defaultValue: true}
+}
+exports.configDialog = {
+    sx: { maxWidth: '26em' }
 }
