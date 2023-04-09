@@ -15,26 +15,13 @@ if (cfg.enable_audio) {
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
-		<div
-			id='mmp-audio'
-			class='mmp'
-		>
-			<audio
-				class='mmp-media'
-				controls
-				controlslist='nodownload'
-			>
+		<div id='mmp-audio'class='mmp'>
+			<audio class='mmp-media' controls controlslist='nodownload'>
 			</audio>
 			<div>
-				<span
-					class='mmp-title'
-				>
+				<span class='mmp-title'>
 				</span>
-				<button
-					id='audio-player-close'
-					class='mmp-close fa-cancel'
-					onclick='mmp_audio()'
-				>
+				<button id='audio-player-close' class='mmp-close fa-cancel' onclick='mmp_audio()'>
 				</button>
 			</div>
 		</div>
@@ -55,27 +42,13 @@ if (cfg.enable_video) {
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
-		<div
-			id='mmp-video'
-			class='mmp'
-		>
-			<video
-				class='mmp-media'
-				${video_options}
-				controls
-				controlslist='nodownload'
-			>
+		<div id='mmp-video' class='mmp'>
+			<video class='mmp-media' ${video_options} controls controlslist='nodownload'>
 			</video>
 			<div>
-				<span
-					class='mmp-title'
-				>
+				<span class='mmp-title'>
 				</span>
-				<button
-					id='video-player-close'
-					class='mmp-close fa-cancel'
-					onclick='mmp_video()'
-				>
+				<button id='video-player-close' class='mmp-close fa-cancel' onclick='mmp_video()'>
 				</button>
 			</div>
 		</div>
@@ -96,24 +69,13 @@ if (cfg.enable_image) {
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
-		<div
-			id='mmp-image'
-			class='mmp'
-		>
-			<img
-				class='mmp-media'
-			>
+		<div id='mmp-image' class='mmp'>
+			<img class='mmp-media'>
 			</img>
 			<div>
-				<span
-					class='mmp-title'
-				>
+				<span class='mmp-title'>
 				</span>
-				<button
-					id='image-viewer-close'
-					class='mmp-close fa-cancel'
-					onclick='mmp_image()'
-				>
+				<button id='image-viewer-close' class='mmp-close fa-cancel' onclick='mmp_image()'>
 				</button>
 			</div>
 		</div>
