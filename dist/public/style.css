@@ -5,6 +5,9 @@
 	margin-left: .2em;
 	vertical-align: text-bottom;
 }
+.cant-open > .mmp-play {
+    display: none;
+}
 .mmp-close {
 	font-size: .7em;
 	margin: .4em;
