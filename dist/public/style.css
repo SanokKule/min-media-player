@@ -1,17 +1,13 @@
 .mmp-play {
 	font-size: .7em;
-	padding: .3em;
-	margin-left: .4em;
+	padding: .25em;
+	padding-right: .3em;
+	margin-left: .2em;
 	vertical-align: text-bottom;
 }
 .mmp-close {
 	font-size: .7em;
-}
-@media (max-width: 1200px) {
-	.mmp-close {
-		margin-right: .4em;
-		margin-bottom: .4em;
-	}
+	margin: .4em;
 }
 .mmp-title {
 	color: var(--button-text);
