@@ -31,13 +31,13 @@ if (cfg.enable_audio) {
 if (cfg.enable_video) {
 	if (cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
-			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
+			/\.(f4v|mkv|mov|mp4|ogv|webm)$/i.test(entry.uri) &&
 				{ label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) }
 		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-			/\.(mkv|mov|mp4|webm)$/i.test(entry.uri) &&
+			/\.(f4v|mkv|mov|mp4|ogv|webm)$/i.test(entry.uri) &&
 				h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_video(entry) })
 		);
 	};

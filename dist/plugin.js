@@ -1,5 +1,5 @@
 exports.description = "minimalistic media player"
-exports.version = 1.01
+exports.version = 1.02
 exports.apiRequired = 8
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = 'style.css'
