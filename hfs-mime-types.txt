@@ -26,4 +26,3 @@ mime:
   "*.weba": audio/webm
   "*.webm": video/webm
   "*.webp": image/webp
-  "*.wmv": video/x-ms-wmv
