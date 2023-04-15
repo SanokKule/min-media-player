@@ -1,8 +1,9 @@
-const cfg = HFS.getPluginConfig();
-const video_options = cfg.start_video_with.toString().replace(',', ' ');
+console.log('HFS plugin: min-media-player v1.04 by SanokKule');
+const mmp_cfg = HFS.getPluginConfig();
+const mmp_vid_opts = mmp_cfg.start_video_with.toString().replace(',', ' ');
 
-if (cfg.enable_audio) {
-	if (cfg.use_file_menu) {
+if (mmp_cfg.enable_audio) {
+	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
 			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
 				{ label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) }
@@ -28,8 +29,8 @@ if (cfg.enable_audio) {
 	`);
 };
 
-if (cfg.enable_video) {
-	if (cfg.use_file_menu) {
+if (mmp_cfg.enable_video) {
+	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
 			/\.(f4v|mkv|mov|mp4|ogv|webm)$/i.test(entry.uri) &&
 				{ label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) }
@@ -43,7 +44,7 @@ if (cfg.enable_video) {
 	};
 	HFS.onEvent('afterHeader', () => `
 		<div id='mmp-video' class='mmp'>
-			<video class='mmp-media' ${video_options} controls controlslist='nodownload'>
+			<video class='mmp-media' ${mmp_vid_opts} controls controlslist='nodownload'>
 			</video>
 			<div>
 				<span class='mmp-title'>
@@ -55,8 +56,8 @@ if (cfg.enable_video) {
 	`);
 };
 
-if (cfg.enable_image) {
-	if (cfg.use_file_menu) {
+if (mmp_cfg.enable_image) {
+	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }, { h }) =>
 			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
 				{ label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
@@ -83,8 +84,13 @@ if (cfg.enable_image) {
 };
 
 document.addEventListener('keydown', (event) => {
-	if (event.key === 'Escape') { mmp_video(); mmp_image(); };
+	if (event.key === 'Escape') { mmp_closeAll() };
 });
+
+function mmp_closeAll() {
+	if (document.getElementById('mmp-video')) { mmp_video() };
+	if (document.getElementById('mmp-image')) { mmp_image() };
+}
 
 function mmp_audio(entry) {
 	const root = document.getElementById('mmp-audio');
@@ -98,7 +104,7 @@ function mmp_audio(entry) {
 	};
 	audio.src = entry.uri;
 	audio.play();
-	audio.volume = cfg.audio_vol;
+	audio.volume = mmp_cfg.audio_vol;
 	root.querySelector('.mmp-title').innerText = entry.name;
 	if (document.getElementById('mmp-video')) {
 		const root_v = document.getElementById('mmp-video');
@@ -119,7 +125,7 @@ function mmp_video(entry) {
 	};
 	video.src = entry.uri;
 	video.play();
-	video.volume = cfg.video_vol;
+	video.volume = mmp_cfg.video_vol;
 	root.querySelector('.mmp-title').innerText = entry.name;
 	if (document.getElementById('mmp-audio')) {
 		const root_a = document.getElementById('mmp-audio');
