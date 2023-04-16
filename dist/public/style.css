@@ -11,6 +11,7 @@
 .mmp-close {
 	font-size: .7em;
 	margin: .4em;
+	padding: .5em;
 }
 .mmp-title {
 	color: var(--button-text);
@@ -53,7 +54,7 @@
 	margin-right: .2em;
 	border-radius: .3em;
 	background: #0f11117d;
-	box-shadow: 0 0 0.3em .3em #0003;
+	box-shadow: 0 0 .3em .3em #0003;
 }
 @media (max-width: 1200px) {
 	#mmp-audio {
