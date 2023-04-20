@@ -1,4 +1,4 @@
-console.log('HFS plugin: min-media-player v1.05 by SanokKule');
+console.log('HFS plugin: min-media-player v1.1 by SanokKule');
 const mmp_cfg = HFS.getPluginConfig();
 const mmp_vid_opts = mmp_cfg.start_video_with.toString().replace(',', ' ');
 
@@ -19,10 +19,10 @@ if (mmp_cfg.enable_audio) {
 		<div id='mmp-audio'class='mmp'>
 			<audio class='mmp-media' controls controlslist='nodownload'>
 			</audio>
-			<div>
+			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button id='audio-player-close' class='mmp-close fa-cancel' onclick='mmp_audio()'>
+				<button class='mmp-close fa-cancel' onclick='mmp_audio()'>
 				</button>
 			</div>
 		</div>
@@ -46,11 +46,13 @@ if (mmp_cfg.enable_video) {
 		<div id='mmp-video' class='mmp'>
 			<video class='mmp-media' ${mmp_vid_opts} controls controlslist='nodownload'>
 			</video>
-			<div>
+			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button id='video-player-close' class='mmp-close fa-cancel' onclick='mmp_video()'>
+				<button class='mmp-close fa-cancel' onclick='mmp_video()'>
 				</button>
+			</div>
+			<div class='mmp-close-div' onclick='mmp_video()'>
 			</div>
 		</div>
 	`);
@@ -58,7 +60,7 @@ if (mmp_cfg.enable_video) {
 
 if (mmp_cfg.enable_image) {
 	if (mmp_cfg.use_file_menu) {
-		HFS.onEvent('fileMenu', ({ entry }, { h }) =>
+		HFS.onEvent('fileMenu', ({ entry }) =>
 			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
 				{ label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
 		);
@@ -73,24 +75,24 @@ if (mmp_cfg.enable_image) {
 		<div id='mmp-image' class='mmp'>
 			<img class='mmp-media'>
 			</img>
-			<div>
+			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button id='image-viewer-close' class='mmp-close fa-cancel' onclick='mmp_image()'>
+				<button class='mmp-close fa-cancel' onclick='mmp_image()'>
 				</button>
+			</div>
+			<div class='mmp-close-div' onclick='mmp_image()'>
 			</div>
 		</div>
 	`);
 };
 
 document.addEventListener('keydown', (event) => {
-	if (event.key === 'Escape') { mmp_closeAll() };
+	if (event.key === 'Escape') {
+		if (document.getElementById('mmp-video')) { mmp_video() };
+		if (document.getElementById('mmp-image')) { mmp_image() };
+	};
 });
-
-function mmp_closeAll() {
-	if (document.getElementById('mmp-video')) { mmp_video() };
-	if (document.getElementById('mmp-image')) { mmp_image() };
-}
 
 function mmp_audio(entry) {
 	const root = document.getElementById('mmp-audio');
@@ -132,7 +134,7 @@ function mmp_video(entry) {
 		const audio = root_a.querySelector('audio');
 		audio.pause();
 	};
-	if (document.getElementById('mmp-image')) { mmp_image(); };
+	if (document.getElementById('mmp-image')) { mmp_image() };
 };
 
 function mmp_image(entry) {
@@ -146,5 +148,5 @@ function mmp_image(entry) {
 	};
 	img.src = entry.uri;
 	root.querySelector('.mmp-title').innerText = entry.name;
-	if (document.getElementById('mmp-video')) { mmp_video(); };
+	if (document.getElementById('mmp-video')) { mmp_video() };
 };
