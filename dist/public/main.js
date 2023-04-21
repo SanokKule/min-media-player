@@ -61,7 +61,7 @@ if (mmp_cfg.enable_video) {
 if (mmp_cfg.enable_image) {
 	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
-			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
+			/\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
 				{ label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
 		);
 	}
