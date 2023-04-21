@@ -9,6 +9,7 @@ mime:
   "*.gif": image/gif
   "*.htm": text/html
   "*.html": text/html
+  "*.jfif": image/jpeg
   "*.jpeg": image/jpeg
   "*.jpg": image/jpeg
   "*.js": text/javascript

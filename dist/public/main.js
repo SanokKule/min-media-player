@@ -1,4 +1,4 @@
-console.log('HFS plugin: min-media-player v1.1 by SanokKule');
+console.log('HFS plugin: min-media-player v1.11 by SanokKule');
 const mmp_cfg = HFS.getPluginConfig();
 const mmp_vid_opts = mmp_cfg.start_video_with.toString().replace(',', ' ');
 
@@ -67,7 +67,7 @@ if (mmp_cfg.enable_image) {
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-			/\.(avif|apng|bmp|gif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
+			/\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
 				h( 'button', { className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) })
 		);
 	};
