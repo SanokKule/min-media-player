@@ -1,18 +1,23 @@
-console.log('HFS plugin: min-media-player v1.11 by SanokKule');
+console.log('HFS plugin: min-media-player v1.12 by SanokKule');
+
 const mmp_cfg = HFS.getPluginConfig();
 const mmp_vid_opts = mmp_cfg.start_video_with.toString().replace(',', ' ');
+
+const mmp_audio_fmts = /\.(aac|flac|mka|mp3|ogg|opus|wav)$/i // audio formats RegEx
+const mmp_video_fmts = /\.(f4v|mkv|mov|mp4|ogv|webm)$/i // video formats RegEx
+const mmp_image_fmts = /\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i // image formats RegEx
 
 if (mmp_cfg.enable_audio) {
 	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
-			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
-				{ label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) }
+			mmp_audio_fmts.test(entry.uri)
+			&& { label: 'Play audio', icon: 'play' , onClick: () => mmp_audio(entry) }
 		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-			/\.(aac|flac|mka|mp3|ogg|opus|wav)$/i.test(entry.uri) &&
-				h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) })
+			mmp_audio_fmts.test(entry.uri)
+			&& h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_audio(entry) })
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
@@ -32,14 +37,14 @@ if (mmp_cfg.enable_audio) {
 if (mmp_cfg.enable_video) {
 	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
-			/\.(f4v|mkv|mov|mp4|ogv|webm)$/i.test(entry.uri) &&
-				{ label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) }
+			mmp_video_fmts.test(entry.uri)
+			&& { label: 'Play video', icon: 'play' , onClick: () => mmp_video(entry) }
 		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-			/\.(f4v|mkv|mov|mp4|ogv|webm)$/i.test(entry.uri) &&
-				h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_video(entry) })
+			mmp_video_fmts.test(entry.uri)
+			&& h( 'button', { className: 'mmp-play fa-play', onClick: () => mmp_video(entry) })
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
@@ -61,14 +66,14 @@ if (mmp_cfg.enable_video) {
 if (mmp_cfg.enable_image) {
 	if (mmp_cfg.use_file_menu) {
 		HFS.onEvent('fileMenu', ({ entry }) =>
-			/\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
-				{ label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
+			mmp_image_fmts.test(entry.uri)
+			&& { label: 'View image', icon: 'picture' , onClick: () => mmp_image(entry) }
 		);
 	}
 	else {
 		HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
-			/\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i.test(entry.uri) &&
-				h( 'button', { className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) })
+			mmp_image_fmts.test(entry.uri)
+			&& h( 'button', { className: 'mmp-play fa-picture', onClick: () => mmp_image(entry) })
 		);
 	};
 	HFS.onEvent('afterHeader', () => `
