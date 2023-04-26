@@ -42,16 +42,19 @@
 }
 .mmp-close-div {
 	display: flex;
-    backdrop-filter: brightness(0.8);
+	backdrop-filter: blur(2px);
     position: fixed;
     height: 100dvh;
     width: 100dvw;
     z-index: -1;
 }
+:root .theme-dark .mmp-close-div {
+	background: rgba(51,51,51,.7333333333);
+}
 
 #mmp-audio {
 	flex-direction: row;
-	background: var(--ghost-contrast);
+	backdrop-filter: blur(2px);
 	top: unset;
 	bottom: 3em;
 	left: auto;
@@ -62,6 +65,9 @@
 	margin-right: .2em;
 	border-radius: .3em;
 	box-shadow: 0 0 .3em .3em #0003;
+}
+:root .theme-dark #mmp-audio {
+	background: rgba(51,51,51,.7333333333);
 }
 @media (max-width: 1200px) {
 	#mmp-audio {
