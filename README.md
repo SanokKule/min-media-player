@@ -1,4 +1,5 @@
-# min-media-player 1.13
+# min-media-player 1.14
+If anyone was trying to use the plugin and it didn't work, 1.14 fixed the bug that was causing it...
 
 [HFS](https://github.com/rejetto/hfs) plugin adding a minimalistic media player
 
