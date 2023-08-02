@@ -2,7 +2,7 @@ console.log('HFS plugin: min-media-player v1.15 by SanokKule');
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
-	video_options: MMP.cfg.start_video_with.toString().replace(',', ' '),
+	video_options: HFS.getPluginConfig().start_video_with.toString().replace(',', ' '),
 	audio_formats: /\.(aac|flac|mka|mp3|ogg|opus|wav)$/i, // audio formats RegEx
 	video_formats: /\.(f4v|mkv|mov|mp4|ogv|webm)$/i, // video formats RegEx
 	image_formats: /\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i, // image formats RegEx
