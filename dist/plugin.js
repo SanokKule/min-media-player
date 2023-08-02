@@ -1,4 +1,4 @@
-exports.description = "Minimalistic media player"
+exports.description = "Minimalistic media player; P.S.: If anyone couldn't get plugin to work, 1.14 fixed it."
 exports.version = 1.14
 exports.apiRequired = 8
 exports.repo = "SanokKule/min-media-player"
