@@ -1,5 +1,5 @@
 exports.description = "Minimalistic media player"
-exports.version = 1.13
+exports.version = 1.14
 exports.apiRequired = 8
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = 'style.css'
@@ -25,7 +25,8 @@ exports.config = {
 		options: [
 			'muted',
 			{ value: 'loop', label: 'looped'}
-		]
+		],
+		defaultValue: []
 	},
 	video_vol: {
 		frontend: true,
@@ -34,7 +35,7 @@ exports.config = {
 		type: 'number',
 		min: 0.0,
 		max: 1.0,
-		defaultValue: 1.00,
+		defaultValue: 1.0,
 		placeholder: 'default: 1.0'
 	},
 	enable_audio: {

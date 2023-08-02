@@ -1,4 +1,4 @@
-console.log('HFS plugin: min-media-player v1.13 by SanokKule');
+console.log('HFS plugin: min-media-player v1.14 by SanokKule');
 
 const mmp_cfg = HFS.getPluginConfig();
 const mmp_vid_opts = mmp_cfg.start_video_with.toString().replace(',', ' ');
