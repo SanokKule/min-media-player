@@ -1,4 +1,4 @@
-# min-media-player 1.15
+# min-media-player 1.16
 
 If anyone was trying to use the plugin and it didn't work, 1.14 fixed the bug that was causing it...
 

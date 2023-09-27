@@ -1,11 +1,11 @@
-console.log('HFS plugin: min-media-player v1.15 by SanokKule');
+console.log('HFS plugin: min-media-player v1.16 by SanokKule');
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
 	video_options: HFS.getPluginConfig().start_video_with.toString().replace(',', ' '),
 	audio_formats: /\.(aac|flac|mka|mp3|ogg|opus|wav)$/i, // audio formats RegEx
 	video_formats: /\.(f4v|mkv|mov|mp4|ogv|webm)$/i, // video formats RegEx
-	image_formats: /\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp)$/i, // image formats RegEx
+	image_formats: /\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp|svg)$/i, // image formats RegEx
 	audio: function (entry) {
 		const root = document.getElementById('mmp-audio');
 		root.style.display = entry ? 'flex' : '';
@@ -84,7 +84,7 @@ if (MMP.cfg.enable_audio) {
 			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button class='mmp-close fa-cancel' onclick='MMP.audio()'>
+				<button type="button" class='mmp-close fa-cancel' onclick='MMP.audio()'>
 				</button>
 			</div>
 		</div>
@@ -113,7 +113,7 @@ if (MMP.cfg.enable_video) {
 			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button class='mmp-close fa-cancel' onclick='MMP.video()'>
+				<button type="button" class='mmp-close fa-cancel' onclick='MMP.video()'>
 				</button>
 			</div>
 			<div class='mmp-close-div' onclick='MMP.video()'>
@@ -139,12 +139,12 @@ if (MMP.cfg.enable_image) {
 	};
 	HFS.onEvent('afterHeader', () => `
 		<div id='mmp-image' class='mmp'>
-			<img class='mmp-media'>
+			<img title='MMP image viewer' class='mmp-media'>
 			</img>
 			<div class='mmp-controls'>
 				<span class='mmp-title'>
 				</span>
-				<button class='mmp-close fa-cancel' onclick='MMP.image()'>
+				<button type="button" class='mmp-close fa-cancel' onclick='MMP.image()'>
 				</button>
 			</div>
 			<div class='mmp-close-div' onclick='MMP.image()'>
