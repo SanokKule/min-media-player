@@ -1,6 +1,6 @@
 exports.description = "Minimalistic media player; P.S.: If anyone couldn't get plugin to work, 1.14 fixed it."
-exports.version = 1.16
-exports.apiRequired = 8
+exports.version = 1.17
+exports.apiRequired = 9.2
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = 'style.css'
 exports.frontend_js = 'main.js'

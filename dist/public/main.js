@@ -1,4 +1,4 @@
-console.log('HFS plugin: min-media-player v1.16 by SanokKule');
+console.log('HFS plugin: min-media-player v1.17 by SanokKule');
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
@@ -71,14 +71,14 @@ if (MMP.cfg.enable_audio) {
 			);
 		}
 		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			HFS.onEvent('afterEntryName', ({ entry }) =>
 				MMP.audio_formats.test(entry.uri)
-				&& h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
+				&& HFS.h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
 			);
 		};
 	};
 	HFS.onEvent('afterHeader', () => `
-		<div id='mmp-audio'class='mmp'>
+		<div id='mmp-audio' class='mmp'>
 			<audio class='mmp-media' controls controlslist='nodownload'>
 			</audio>
 			<div class='mmp-controls'>
@@ -100,9 +100,9 @@ if (MMP.cfg.enable_video) {
 			);
 		};
 		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			HFS.onEvent('afterEntryName', ({ entry }) =>
 				MMP.video_formats.test(entry.uri)
-				&& h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
+				&& HFS.h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
 			);
 		};
 	};
@@ -131,9 +131,9 @@ if (MMP.cfg.enable_image) {
 			);
 		};
 		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { h }) =>
+			HFS.onEvent('afterEntryName', ({ entry }) =>
 				MMP.image_formats.test(entry.uri)
-				&& h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
+				&& HFS.h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
 			);
 		};
 	};
