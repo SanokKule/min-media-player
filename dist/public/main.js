@@ -1,4 +1,4 @@
-console.log("HFS plugin: min-media-player v1.19 by SanokKule")
+console.log("HFS plugin: min-media-player v1.2 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
@@ -109,7 +109,8 @@ if (MMP.cfg.enable_audio) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }) => {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
 			if (MMP.audio_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
 			}
@@ -126,7 +127,8 @@ if (MMP.cfg.enable_video) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }) => {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
 			if (MMP.video_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
 			}
@@ -143,7 +145,8 @@ if (MMP.cfg.enable_image) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }) => {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
 			if (MMP.image_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
 			}
