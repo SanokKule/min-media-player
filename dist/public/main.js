@@ -109,8 +109,7 @@ if (MMP.cfg.enable_audio) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-			setOrder(-1)
+		HFS.onEvent('afterEntryName', ({ entry }) => {
 			if (MMP.audio_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
 			}
@@ -127,8 +126,7 @@ if (MMP.cfg.enable_video) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-			setOrder(-1)
+		HFS.onEvent('afterEntryName', ({ entry }) => {
 			if (MMP.video_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
 			}
@@ -145,8 +143,7 @@ if (MMP.cfg.enable_image) {
 		)
 	}
 	if (cfg.use_file_list) {
-		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-			setOrder(-1)
+		HFS.onEvent('afterEntryName', ({ entry }) => {
 			if (MMP.image_formats.test(entry.uri)) {
 				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
 			}
