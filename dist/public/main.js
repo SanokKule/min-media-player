@@ -1,4 +1,4 @@
-console.log("HFS plugin: min-media-player v1.18 by SanokKule")
+console.log("HFS plugin: min-media-player v1.19 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
@@ -102,67 +102,55 @@ imageHtml = `
 
 if (MMP.cfg.enable_audio) {
 	HFS.onEvent('afterHeader', () => audioHtml)
-	switch (MMP.cfg.use_file_menu) {
-		case true: {
-			HFS.onEvent('fileMenu', ({ entry }) =>
-				MMP.audio_formats.test(entry.uri)
-				&& { label: t`Play audio`, icon: 'play' , onClick: () => MMP.audio(entry) }
-			)
-			break
-		}
-		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-				setOrder(-1)
-				if (MMP.audio_formats.test(entry.uri)) {
-					return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
-				}
-			})
-			break
-		}
+	if (cfg.use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }) =>
+			MMP.audio_formats.test(entry.uri)
+			&& { label: t`Play audio`, icon: 'play' , onClick: () => MMP.audio(entry) }
+		)
+	}
+	if (cfg.use_file_list) {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
+			if (MMP.audio_formats.test(entry.uri)) {
+				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.audio(entry) })
+			}
+		})
 	}
 }
 
 if (MMP.cfg.enable_video) {
 	HFS.onEvent('afterHeader', () => videoHtml)
-	switch (MMP.cfg.use_file_menu) {
-		case true: {
-			HFS.onEvent('fileMenu', ({ entry }) =>
-				MMP.video_formats.test(entry.uri)
-				&& { label: t`Play video`, icon: 'play' , onClick: () => MMP.video(entry) }
-			)
-			break
-		}
-		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-				setOrder(-1)
-				if (MMP.video_formats.test(entry.uri)) {
-					return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
-				}
-			})
-			break
-		}
+	if (cfg.use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }) =>
+			MMP.video_formats.test(entry.uri)
+			&& { label: t`Play video`, icon: 'play' , onClick: () => MMP.video(entry) }
+		)
+	}
+	if (cfg.use_file_list) {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
+			if (MMP.video_formats.test(entry.uri)) {
+				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.video(entry) })
+			}
+		})
 	}
 }
 
 if (MMP.cfg.enable_image) {
 	HFS.onEvent('afterHeader', () => imageHtml)
-	switch (MMP.cfg.use_file_menu) {
-		case true: {
-			HFS.onEvent('fileMenu', ({ entry }) =>
-				MMP.image_formats.test(entry.uri)
-				&& { label: t`View image`, icon: 'image fa-picture' , onClick: () => MMP.image(entry) }
-			)
-			break
-		}
-		case false: {
-			HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
-				setOrder(-1)
-				if (MMP.image_formats.test(entry.uri)) {
-					return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
-				}
-			})
-			break
-		}
+	if (cfg.use_file_menu) {
+		HFS.onEvent('fileMenu', ({ entry }) =>
+			MMP.image_formats.test(entry.uri)
+			&& { label: t`View image`, icon: 'image fa-picture' , onClick: () => MMP.image(entry) }
+		)
+	}
+	if (cfg.use_file_list) {
+		HFS.onEvent('afterEntryName', ({ entry }, { setOrder }) => {
+			setOrder(-1)
+			if (MMP.image_formats.test(entry.uri)) {
+				return h( 'button', { className: 'mmp-play fa-play', onClick: () => MMP.image(entry) })
+			}
+		})
 	}
 }
 }

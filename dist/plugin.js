@@ -1,5 +1,5 @@
 exports.description = "Minimalistic media player"
-exports.version = 1.18
+exports.version = 1.19
 exports.apiRequired = 8.5
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = "style.css"
@@ -7,9 +7,15 @@ exports.frontend_js = "main.js"
 exports.config = {
 	use_file_menu: {
 		frontend: true,
-		label: "Move play buttons into the file menu",
+		label: "Show play button under the file menu",
 		type: 'boolean',
 		defaultValue: false
+	},
+	use_file_list: {
+		frontend: true,
+		label: "Show play button in the file list",
+		type: 'boolean',
+		defaultValue: true
 	},
 	enable_video: {
 		frontend: true,
@@ -62,5 +68,5 @@ exports.config = {
 	}
 }
 exports.configDialog = {
-    sx: { maxWidth: '26em' }
+	sx: { maxWidth: '26em' }
 }
