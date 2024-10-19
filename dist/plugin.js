@@ -1,5 +1,5 @@
 exports.description = "Minimalistic media player"
-exports.version = 1.2
+exports.version = 1.21
 exports.apiRequired = 9.5
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = "style.css"
@@ -30,7 +30,7 @@ exports.config = {
 		type: 'multiselect',
 		options: [
 			'muted',
-			{ value: 'loop', label: 'looped'}
+			{ value: 'loop', label: 'looped' }
 		],
 		defaultValue: []
 	},
