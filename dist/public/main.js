@@ -1,4 +1,4 @@
-console.log("HFS plugin: min-media-player v1.192 by SanokKule")
+console.log("HFS plugin: min-media-player v1.19 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
@@ -62,7 +62,7 @@ const { h, t } = HFS
 const cfg = HFS.getPluginConfig()
 audioHtml = `
 <div id='mmp-audio' class='mmp'>
-	<audio class='mmp-media' controls controlslist='nodownload' tabindex='-1'>
+	<audio class='mmp-media' controls controlslist='nodownload'>
 	</audio>
 	<div class='mmp-controls'>
 		<span class='mmp-title'>
@@ -74,7 +74,7 @@ audioHtml = `
 
 videoHtml = `
 <div id='mmp-video' class='mmp'>
-	<video class='mmp-media' ${cfg.start_video_with.toString().replace(',', ' ')} controls controlslist='nodownload' tabindex='-1'>
+	<video class='mmp-media' ${cfg.start_video_with.toString().replace(',', ' ')} controls controlslist='nodownload'>
 	</video>
 	<div class='mmp-controls'>
 		<span class='mmp-title'>
@@ -88,7 +88,7 @@ videoHtml = `
 
 imageHtml = `
 <div id='mmp-image' class='mmp'>
-	<img title='MMP image viewer' class='mmp-media' tabindex='-1'>
+	<img title='MMP image viewer' class='mmp-media'>
 	</img>
 	<div class='mmp-controls'>
 		<span class='mmp-title'>
