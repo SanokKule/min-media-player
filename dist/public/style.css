@@ -36,6 +36,7 @@
 	max-height: 90vh;
 	inline-size: -webkit-fill-available;
 	inline-size: -moz-available;
+	outline: 0!important;
 }
 .mmp-title {
 	color: var(--button-text);

@@ -1,4 +1,4 @@
-console.log("HFS plugin: min-media-player v1.19 by SanokKule")
+console.log("HFS plugin: min-media-player v1.193 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
