@@ -1,4 +1,4 @@
-console.log("HFS plugin: min-media-player v1.2 by SanokKule")
+console.log("HFS plugin: min-media-player v1.22 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
@@ -60,6 +60,7 @@ const MMP = {
 {
 const { h, t } = HFS
 const cfg = HFS.getPluginConfig()
+
 audioHtml = `
 <div id='mmp-audio' class='mmp'>
 	<audio class='mmp-media' controls controlslist='nodownload'>
