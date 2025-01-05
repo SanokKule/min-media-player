@@ -1,5 +1,5 @@
 exports.description = "Minimalistic media player"
-exports.version = 1.22
+exports.version = 1.223
 exports.apiRequired = 9.5
 exports.repo = "SanokKule/min-media-player"
 exports.frontend_css = "style.css"
@@ -65,7 +65,14 @@ exports.config = {
 		label: "Enable image viewer",
 		type: 'boolean',
 		defaultValue: true
+	},
+	try_ffmpeg: {
+		frontend: true,
+		label: "Try using unsupported-videos plugin",
+		type: 'boolean',
+		defaultValue: true
 	}
+
 }
 exports.configDialog = {
 	sx: { maxWidth: '26em' }

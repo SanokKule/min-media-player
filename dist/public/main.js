@@ -1,9 +1,9 @@
-console.log("HFS plugin: min-media-player v1.22 by SanokKule")
+console.log("HFS plugin: min-media-player v1.223 by SanokKule")
 
 const MMP = {
 	cfg: HFS.getPluginConfig(),
 	audio_formats: /\.(aac|flac|mka|mp3|ogg|opus|wav)$/i, // audio formats RegEx
-	video_formats: /\.(f4v|mkv|mov|mp4|ogv|webm)$/i, // video formats RegEx
+	video_formats: /\.(f4v|mkv|mov|mp4|ogv|webm|avi|mpg|3gp)$/i, // video formats RegEx
 	image_formats: /\.(avif|apng|bmp|gif|jfif|jpeg|jpg|png|webp|svg)$/i, // image formats RegEx
 	audio: function (entry) {
 		const root = document.getElementById('mmp-audio')
@@ -34,7 +34,15 @@ const MMP = {
 			return
 		}
 		video.src = entry.uri
-		video.play()
+		if (MMP.cfg.try_ffmpeg && HFS.plugins['unsupported-videos']) {
+			video.play().catch(function() {
+				console.log('Error playing, trying to use ffmpeg on server')
+				video.src += "?ffmpeg"
+				video.play()
+			})
+		} else {
+			video.play()
+		}
 		video.volume = MMP.cfg.video_vol
 		root.querySelector('.mmp-title').innerText = entry.name
 		if (audio = document.getElementById('mmp-audio')) {
